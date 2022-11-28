@@ -5,6 +5,8 @@ import pandas as pd
 import gspread as gs
 
 from google.oauth2 import service_account
+
+from datetime import date, datetime, timedelta
 # import pandas_gbq
 
 gc = gs.service_account(filename='awesome-highway-358007-5eb23d1d599f.json')
@@ -16,8 +18,8 @@ ws = sh.worksheet('location')
 df = pd.DataFrame(ws.get_all_records())
 
 
-from datetime import date, datetime, timedelta
 
+# function to return all days between two dates
 def datespan(startDate, endDate, delta=timedelta(days=1)):
     currentDate = startDate
     while currentDate < endDate:
@@ -27,9 +29,12 @@ def datespan(startDate, endDate, delta=timedelta(days=1)):
 all_results = []  
 def get_data():
     all_results = []
+    
+    #loop through all days between the two given dates
     for day in datespan(date(2007, 3, 30), date(2007, 7, 1),delta=timedelta(days=1)):
 #         print(day)
         
+        # loop through the individual longitude and latitude from the populated data sheet
         for name, lat, long in df[['Name', 'Latitude', 'Longitude']].values:
             url = f"https://api.sunrisesunset.io/json?lat={lat}&lng={long}&timezone=UTC&date={day}"
             try:
