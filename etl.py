@@ -31,7 +31,7 @@ def get_data():
     all_results = []
     
     #loop through all days between the two given dates
-    for day in datespan(date(2007, 3, 30), date(2007, 7, 1),delta=timedelta(days=1)):
+    for day in datespan(date(2007, 3, 30), date(2007, 4, 15),delta=timedelta(days=1)):
 #         print(day)
         
         # loop through the individual longitude and latitude from the populated data sheet
@@ -48,9 +48,9 @@ def get_data():
                 pass
     data = pd.json_normalize(all_results)
     data = data[['name', 'date', 'dawn', 'dusk', 'sunrise', 'sunset']]
-    for dawn, dusk in data.loc[data.name == "Honolulu, Hawaii", ["dawn", "dusk"]].values:
-        data.dawn = dusk
-        data.dusk = dawn
+    # for dawn, dusk in data.loc[data.name == "Honolulu, Hawaii", ["dawn", "dusk"]].values:
+    #     data.dawn = dusk
+    #     data.dusk = dawn
     
     return data
 
