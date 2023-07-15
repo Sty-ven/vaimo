@@ -72,3 +72,4 @@ data.to_gbq("Daily_plan.Vaimo", "awesome-highway-358007",
             credentials=credentials, table_schema=table_schema, if_exists='replace')
 
 
+# this is the end
