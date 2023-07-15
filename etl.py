@@ -73,3 +73,5 @@ data.to_gbq("Daily_plan.Vaimo", "awesome-highway-358007",
 
 
 # this is the end
+
+# this new change is for encami
